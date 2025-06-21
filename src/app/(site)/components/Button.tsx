@@ -7,13 +7,10 @@ interface ButtonProps {
     children?: React.ReactNode;
     onClick?:() => void;
     type?:'button' | 'submit' | 'reset' | undefined;
-
     // short-circuit evaluation
     disabled?: boolean;
     danger?:boolean;
     secondary?: boolean;
-
-
 }
 
 const Button: React.FC<ButtonProps> = ({
