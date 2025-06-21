@@ -1,6 +1,6 @@
 'use client'
 import clsx from 'clsx'
-import { FieldError, FieldValues, UseFormRegister } from 'react-hook-form'
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
 
 interface InputProps {
     label:string;
@@ -8,7 +8,7 @@ interface InputProps {
     type?: string;
     required?:string;
     reigster: UseFormRegister<FieldValues>;
-    errors: FieldError;
+    errors: FieldErrors;
     disabled?: boolean;
 }
 
@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = ({
     required = false, // required false?! so we don't need to fill it?!
     reigster, // ?? 
     errors,
-    disabled = false,
+    disabled = false, //
 }) => {
     return (
         <div>
@@ -34,9 +34,33 @@ const Input: React.FC<InputProps> = ({
                  type={type} 
                  // will somehow in other code give the value to input/type input/id?! I just think about reason why we put these props here?
                  id={id}
-                 autoComplete={id}
+                 autoComplete={id} // what is autoComplete for?
                  disabled={disabled}
-                 {...reigster(id, {required})}
+                 {...reigster(id, {required})} // What is it?
+                  className={clsx(
+                    `
+                    form-input
+                    block
+                    w-full
+                    rounded-md
+                    border-0
+                    py-1.5
+                    text-gray-900
+                    shadow-sm
+                    ring-1
+                    ring-inset
+                    ring-gray-300
+                    placeholder:text-gray-400
+                    focus:ring-2
+                    focus:ring-inset
+                    focus:ring-cyan-600
+                    sm:text-sm
+                    sm:leading-6
+                    `,
+
+                    errors[id] && 'focus:ring-rose-500',
+                    disabled && 'opacity-50 cursor-default' // what is the effect of disabled props set as false in input?
+                  )}
                 />
             </div>
         </div>
