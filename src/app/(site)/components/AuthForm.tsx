@@ -4,7 +4,7 @@
 // import Button from '@/app/components/Button'
 import Button from './Button'
 // import Input from '@/app/components/input/Input'
-import input from './input/Input'
+import Input from './input/Input'
 
 
 import { useState, useCallback, useEffect } from 'react';
@@ -38,9 +38,43 @@ const AuthForm = () => {
     }, [variant]);
 
 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }, 
+    } = useForm<FieldValues>({
+        defaultValues: { name: '', email: '', password: ''},
+    })
+
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        if (variant === 'REGISTER') {
+            //logical
+        }
+
+        if (variant === 'LOGIN') {
+            //logical
+        }
+
+        
+    }
 
     return (
-        <div></div>
+        <section className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+            <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
+                <form>
+                    {variant === 'REGISTER' && (
+                        <Input
+                            id=""
+                            label=""
+                            register={{}}
+                            errors={{}}
+                            disabled={false}
+                        />
+                    )}
+                </form>
+
+            </div>
+        </section>
     )
 
 }
