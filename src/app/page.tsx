@@ -38,7 +38,22 @@ export default function Home() {
 
             {/* right Column */}
             <div className="lg:w-1/2 bg-gray-100 p-10">
-                <AuthForm/>
+                <div className="sm:mx-auto flex flex-col justify-center h-full sm:w-full sm:max-w-md">
+                <Image
+                    alt="logo"
+                    className="mx-auto w-auto"
+                    height={64}
+                    width={64}
+                    src="/images/logo.png"
+                />
+
+                <h2 className="mt-6 text-center text-3xl font-bold text-gray-900 tracking-tight">
+                    Join Nexus Chat Today!
+                </h2>
+
+                {/* Auth Form */}
+                <AuthForm />
+                </div>
             </div>
         </main>
 

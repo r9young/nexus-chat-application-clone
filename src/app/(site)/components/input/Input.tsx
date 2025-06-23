@@ -7,7 +7,7 @@ interface InputProps {
     id: string;
     type?: string;
     required?:string;
-    reigster: UseFormRegister<FieldValues>;
+    register: UseFormRegister<FieldValues>;
     errors: FieldErrors;
     disabled?: boolean;
 }
@@ -17,7 +17,7 @@ const Input: React.FC<InputProps> = ({
     id, 
     type='text',
     required = false, // required false?! so we don't need to fill it?!
-    reigster, // ?? 
+    register, // ?? 
     errors,
     disabled = false, //
 }) => {
@@ -36,7 +36,7 @@ const Input: React.FC<InputProps> = ({
                  id={id}
                  autoComplete={id} // what is autoComplete for?
                  disabled={disabled}
-                 {...reigster(id, {required})} // What is it?
+                 {...register(id, {required})} // What is it?
                   className={clsx(
                     `
                     form-input
@@ -58,7 +58,7 @@ const Input: React.FC<InputProps> = ({
                     sm:leading-6
                     `,
 
-                    errors[id] && 'focus:ring-rose-500',
+                    // errors[id] && 'focus:ring-rose-500',
                     disabled && 'opacity-50 cursor-default' // what is the effect of disabled props set as false in input?
                   )}
                 />
