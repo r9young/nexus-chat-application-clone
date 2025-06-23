@@ -7,18 +7,19 @@ interface FlashMessageProps {
 
 const FlashMessage: React.FC<FlashMessageProps> = ({ message }) => {
   const divRef = useRef<HTMLDivElement>(null);
+  // it is like putting a special 'label' or 'tag'
 
   useEffect(() => {
     // Change background color on message change
     if (divRef.current) {
       divRef.current.style.backgroundColor = 'yellow';
 
-      // Revert color after 500ms
+      // Revert color after 300ms, it is not important here!
       const timeout = setTimeout(() => {
         if (divRef.current) {
           divRef.current.style.backgroundColor = '';
         }
-      }, 500);
+      }, 300);
 
       // Cleanup timer on component unmount or next effect run
       return () => clearTimeout(timeout);
