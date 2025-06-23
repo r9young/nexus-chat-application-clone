@@ -102,7 +102,7 @@
 //   );
 // }
 
-
+'use client'
 import React, { useState } from 'react';
 import FlashMessage from './React_Examples/FlashMessage';
 
