@@ -103,17 +103,20 @@
 // }
 
 
-
 import React, { useState } from 'react';
 import FlashMessage from './React_Examples/FlashMessage';
 
-const App = () => {
-  const [message, setMessage] = useState('Hello!');
+const App: React.FC = () => {
+  const [message, setMessage] = useState<string>('Hello!');
+
+  const handleChangeMessage = () => {
+    setMessage('New message at ' + new Date().toLocaleTimeString());
+  };
 
   return (
     <div style={{ padding: '20px' }}>
       <FlashMessage message={message} />
-      <button onClick={() => setMessage('New message at ' + new Date().toLocaleTimeString())}>
+      <button onClick={handleChangeMessage}>
         Change Message
       </button>
     </div>
