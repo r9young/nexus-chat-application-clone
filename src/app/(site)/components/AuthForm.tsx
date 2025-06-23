@@ -34,9 +34,11 @@ const AuthForm = () => {
         }
     },[session?.status, router]);
 
-
+    // using the updater function (updater) - setVariant from useState within your Callback function
+    // useCallback memoizes the toggleVariant function. 
     const toggleVariant = useCallback (()=> {
-        setVariant((prev) => (prev === 'LOGIN' ? 'REGISTER' : 'LOGIN'))
+        setVariant((prev) => (prev === 'LOGIN' ? 'REGISTER' : 'LOGIN')) // since prev === 'LOGIN' -> false, then state is set to 'LOGIN'
+        // pre represent previous(current) state value
     }, [variant]);
 
 
@@ -49,6 +51,8 @@ const AuthForm = () => {
     })
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        setIsLoading(true);
+
         if (variant === 'REGISTER') {
             //logical
         }
@@ -60,19 +64,47 @@ const AuthForm = () => {
         
     }
 
+
+    const socialAction = (action: string ) => {
+        setIsLoading(true);
+
+        // SignIn
+    }
+
     return (
         <section className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
-                <form>
+                <form >
                     {variant === 'REGISTER' && (
                         <Input
-                            id=""
-                            label=""
-                            register={{}}
-                            errors={{}}
-                            disabled={false}
+                            id="name"
+                            label="Name"
+                            register={{register}}
+                            errors={errors}
+                            disabled={isLoading}
                         />
+
                     )}
+
+                        <Input
+                            id = "email"
+                            type = "email"
+                            label = "Email Address"
+                            // register = {register}
+                            error = {errors}
+                            disabled = {isLoading}
+                        
+                        />
+
+                        <Input
+                            id = "password"
+                            type = "password"
+                            label = "Password"
+                            register={register}
+                            errors={errors}
+                            disabled={isLoading}
+                        />
+                  
 
                     <div>
                         <Button disabled = {isLoading} type='submit' fullWidth>
