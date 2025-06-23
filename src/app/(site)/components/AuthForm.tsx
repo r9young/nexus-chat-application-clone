@@ -26,8 +26,10 @@ const AuthForm = () => {
     const [variant, setVariant] = useState<Variant>('LOGIN')// it give an initial value to variant, which is LOGIN and also give a type for safe which is Variant.
     const [isLoading, setIsLoading] = useState(false);
 
+
+    // using the results from one hook (useSession) in another (useEffect).
     useEffect(() => {
-        if (session.status === 'authenticated') {
+        if (session.status === 'authenticated') { // using the result of useSession()
             router.push('/users')
         }
     },[session?.status, router]);
@@ -71,6 +73,12 @@ const AuthForm = () => {
                             disabled={false}
                         />
                     )}
+
+                    <div>
+                        <Button disabled = {isLoading} type='submit' fullWidth>
+                            {variant === 'REGISTER' ? 'Sign up' : 'Sign in'}
+                        </Button>
+                    </div>
                 </form>
 
             </div>
