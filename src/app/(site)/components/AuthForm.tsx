@@ -53,15 +53,25 @@ const AuthForm = () => {
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
 
+
+        // Upon successful registration, the frontend immediately authenticates the user
         if (variant === 'REGISTER') {
-            //logical
+            // if user selected Register, sends user-provided data (likely name, email, password) to the backend API endpoint /api/register via a POST request)
+            axios
+                .post('/api/register', data) 
+                .then(()=>{
+                    signIn('credentials', data) 
+                    // this is step ensuring a user experience without needing the user to manually login in again
+                })
         }
 
         if (variant === 'LOGIN') {
-            //logical
+            // Directly call signIn to authenticate user with provided login credentials
+            signIn('credentials', {
+            ...data,
+            redirect: false,
+            })
         }
-
-        
     }
 
 
@@ -74,7 +84,7 @@ const AuthForm = () => {
     return (
         <section className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
-                <form >
+                <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     {variant === 'REGISTER' && (
                         <Input
                             id="name"
@@ -90,7 +100,7 @@ const AuthForm = () => {
                             id = "email"
                             type = "email"
                             label = "Email Address"
-                            // register = {register}
+                            register = {register}
                             error = {errors}
                             disabled = {isLoading}
                         
@@ -112,6 +122,10 @@ const AuthForm = () => {
                         </Button>
                     </div>
                 </form>
+
+                {/* Social Login Buttons */}
+
+                {/* Toggle Login/Register */}
 
             </div>
         </section>
