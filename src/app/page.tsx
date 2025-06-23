@@ -38,7 +38,7 @@ export default function Home() {
 
             {/* right Column */}
             <div className="lg:w-1/2 bg-gray-100 p-10">
-                {/* <AuthForm/> */}
+                <AuthForm/>
             </div>
         </main>
 
