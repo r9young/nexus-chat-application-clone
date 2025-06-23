@@ -29,7 +29,7 @@ const AuthForm = () => {
 
     // using the results from one hook (useSession) in another (useEffect).
     useEffect(() => {
-        if (session.status === 'authenticated') { // using the result of useSession()
+        if (session?.status === 'authenticated') { // using the result of useSession()
             router.push('/users')
         }
     },[session?.status, router]);

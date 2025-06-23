@@ -22,7 +22,7 @@ const FlashMessage: React.FC<FlashMessageProps> = ({ message }) => {
       }, 300);
 
       // Cleanup timer on component unmount or next effect run
-      return () => clearTimeout(timeout);
+      return () => clearTimeout(timeout); // is optional
     }
   }, [message]);
 
