@@ -9,6 +9,7 @@ import { BsGithub, BsGoogle, BsTwitter } from 'react-icons/bs';
 import { useState, useCallback, useEffect } from 'react';
 import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 import AuthSocialButton from './AuthSocialButton';
+import { toast } from 'react-hot-toast';
 
 
 // new hooks
@@ -78,10 +79,21 @@ const AuthForm = () => {
         setIsLoading(true);
 
         signIn(action, {
+            redirect:false
+        }) // it is a promise
 
+        .then((res) => {
+            if (res?.error) {
+                toast.error(res.error)
+            }
+
+            if (res?.ok && !res?.error) {
+                toast.success("Entering Nexus!")
+            }
         })
-        .then()
-        .finally()
+        
+        .finally(() => setIsLoading(false)) 
+        // reset the value of IsLoading into true.
     }
 
     return (
