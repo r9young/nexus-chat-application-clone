@@ -44,7 +44,7 @@ export default function Home() {
                     className="mx-auto w-auto"
                     height={64}
                     width={64}
-                    src="./image/logo.png"
+                    src="/image/logo.png" 
                 />
 
                 <h2 className="mt-6 text-center text-3xl font-bold text-gray-900 tracking-tight">
