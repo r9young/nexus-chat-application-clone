@@ -173,6 +173,21 @@ const AuthForm = () => {
                 </article>
 
                 {/* Toggle Login/Register */}
+                <div className="flex gap-2 justify-center text-sm mt-6 px-2 text-gray-500">
+                    <span>
+                        { variant === 'REGISTER'
+                        ? 'Already have an account?'
+                        : 'New to Nexus?'        
+                        }
+                    </span>
+                    <button
+                     type="button"
+                     onClick={toggleVariant}
+                     className="underline text-blue-500 hover:text-blue-600"
+                    >
+                        {variant === 'REGISTER' ? 'Sign in' : 'Sign up'}
+                    </button>
+                </div>
 
             </div>
         </section>
