@@ -1,13 +1,14 @@
-// import { Metadata } from 'next';
-// // import getUsers from '../actions/getUsers'
-// // import Sidebar from '../components/sidebar/Sidebar'
-// // import UserList from './components/UserList'
+// src/app/users/layout.tsx
+import { Metadata } from 'next';
 
-// export const metadata: Metadata = {
-//     title: 'All Users |  Nexus - Your Ultimate Chat Experience'
-// }
+export const metadata: Metadata = {
+  title: 'All Users | Nexus - Your Ultimate Chat Experience',
+};
 
-// export default async function UsersLayout({
-
-    
-// })
+export default function UsersLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <div className="h-full">{children}</div>;
+}
