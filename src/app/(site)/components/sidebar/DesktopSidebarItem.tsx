@@ -8,7 +8,7 @@ interface DesktopSidebarItemProps {
     label: string;
     icon:any;
     active?: boolean;
-    onClick?: () => void
+    onClick?: () => void // it is an optional function
 }
 
 
