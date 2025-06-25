@@ -24,9 +24,16 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
             <nav className="mt-4 flex flex-col justify-between">
                 <ul role="list" className="flex flex-col items-center space-y-1">
                     {/*  iterates over the array returned by useRoutes and for each route it creates a DesktopSidebarItem component */}
-                    {routes}.map((route) => {
-                        <DesktopSidebarItem />
-                    })
+                    {routes.map((route)=> (
+                        <DesktopSidebarItem
+                            key={route.label}
+                            href={route.href}
+                            label={route.label}
+                            icon={route.icon}
+                            active={route.active}
+                            onClick={route.onClick}
+                        />
+                    ))}
 
                 </ul>
             </nav>
