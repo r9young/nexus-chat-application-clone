@@ -104,7 +104,7 @@ const AuthForm = () => {
                         <Input
                             id="name"
                             label="Name"
-                            register={{register}}
+                            register={register}
                             errors={errors}
                             disabled={isLoading}
                         />
@@ -116,7 +116,7 @@ const AuthForm = () => {
                             type = "email"
                             label = "Email Address"
                             register = {register}
-                            error = {errors}
+                            errors = {errors}
                             disabled = {isLoading}
                         
                         />
