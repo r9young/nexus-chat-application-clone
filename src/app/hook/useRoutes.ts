@@ -20,18 +20,30 @@ const useRoutes = () => {
 
             },
             {
+                labe: 'Users',
+                href: '/users', 
+                icon: HiUsers,
+                active: pathname === '/users'
 
             },
             {
+                label: 'Users',
+                href: '/users',
+                icon: HiUsers,
+                active: pathname === '/users'
 
+            },
+            {
+                label:'Logout',
+                href:'#',
+                onClick: () => signOut(),
+                icon: HiArrowLeftOnRectangle
             }
-
-
-        ], 
-
-        [pathname, conversationId]
+        ], [pathname, conversationId]
 
     )
+
+    return routes;
 }
 
 export default useRoutes;
