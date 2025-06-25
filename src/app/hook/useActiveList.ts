@@ -1,3 +1,5 @@
+//so useActiveList hook holds a shared list of active user IDs.
+
 import { create } from 'zustand'
 
 
@@ -10,5 +12,5 @@ interface ActiveListStore {
 
 
 const useActiveList = create<ActiveListStore>((set) => ({
-    
+
 }))
