@@ -41,7 +41,7 @@ const DesktopSidebarItem: React.FC<DesktopSidebarItemProps> = ({
             <Icon className="h-6 w-6 shrink-0" />
             <span>{label}</span>
         </Link>
-        <Icon className="h-6 w-6 shrink-0" />
+        {/* <Icon className="h-6 w-6 shrink-0" /> */}
        </li>
     )
 }
