@@ -10,9 +10,9 @@ interface AvatarProps {
 }
 
 const Avatar: React.FC <AvatarProps> = ({ user }) => {
-
+    // so the Avatar.tsx pull the members array from useActiveList and checks if the current user's email is present to determine active status.
     const { members } = useActiveList()
-    const isActive = members.indexOf(useremail) !== -1;
+    const isActive = members.indexOf(user?.email) !== -1;
 
     return (
         <div className="relative">
@@ -31,3 +31,6 @@ const Avatar: React.FC <AvatarProps> = ({ user }) => {
 }
 
 export default Avatar;
+
+
+
