@@ -39,7 +39,8 @@ const DesktopSidebarItem: React.FC<DesktopSidebarItemProps> = ({
             )}
         >
             <Icon className="h-6 w-6 shrink-0" />
-            <span>{label}</span>
+           <span className="sr-only">{label}</span>
+           {/* sr - small screen only ? */}
         </Link>
         {/* <Icon className="h-6 w-6 shrink-0" /> */}
        </li>
