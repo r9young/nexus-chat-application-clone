@@ -3,6 +3,9 @@ import DesktopSidebar from './DesktopSidebar'
 // import MobileFooter from './MobileFooter'
 
 async function Sidebar({children}:{children: React.ReactNode}) {
+
+    // const currentUser = await getCurrentUser();
+    
     // Temporary mock user object for testing
     const currentUser = {
         id: "1",

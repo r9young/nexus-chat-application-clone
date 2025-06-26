@@ -11,6 +11,7 @@ import { useState } from 'react';
 import useRoutes from '../../../hooks/useRoutes'
 import DesktopSidebarItem from "./DesktopSidebarItem"
 import SettingsModal from './SettingsModal'
+import Avatar from '../Avatar';
 // import Avatar from '../Avatar';
 
 
@@ -55,8 +56,13 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
                     </ul>
                 </nav>
 
-                <nav>
-                    <div>
+                <nav className="mt-4 flex flex-column justify-between items-center">
+                    <div
+                        onClick = {() => setIsOpen(true)}
+                        className = "cursor-pointer hover:opacity-75 transition"
+                        title="Edit profile"
+                    >
+                        <Avatar user={currentUser}/>
                         
                     </div>
                 </nav>
