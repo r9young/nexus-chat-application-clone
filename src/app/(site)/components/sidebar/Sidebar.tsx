@@ -11,8 +11,13 @@ async function Sidebar({children}:{children: React.ReactNode}) {
         id: "1",
         name: "Test User",
         email: "test@example.com",
+        emailVerified: null,
+        image: null,
+        hashedPassword: null,
         createdAt: new Date(),
         updatedAt: new Date(),
+        conversationIds: [],
+        seenMessageIds: [],
     };
 
     return (
