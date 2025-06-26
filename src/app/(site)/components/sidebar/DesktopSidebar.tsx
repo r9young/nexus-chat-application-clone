@@ -8,10 +8,10 @@
 import { User } from '@prisma/client'; // ??
 import { useState } from 'react';
 
-import useRoutes from '../../../hook/useRoutes'
+import useRoutes from '../../../hooks/useRoutes'
 import DesktopSidebarItem from "./DesktopSidebarItem"
 import SettingsModal from './SettingsModal'
-import Avatar from '../Avatar';
+// import Avatar from '../Avatar';
 
 
 interface DesktopSidebarProps {

@@ -1,3 +1,5 @@
+// need to think about it
+
 import { useParams } from 'next/navigation';
 import { useMemo } from 'react';
 
