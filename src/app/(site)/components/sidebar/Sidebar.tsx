@@ -1,14 +1,21 @@
 // import getCurrentUser from '@/app/actions/getCurrentUser'
 import DesktopSidebar from './DesktopSidebar'
-import MobileFooter from './MobileFooter'
+// import MobileFooter from './MobileFooter'
 
 async function Sidebar({children}:{children: React.ReactNode}) {
-    const currentUser = "test"
+    // Temporary mock user object for testing
+    const currentUser = {
+        id: "1",
+        name: "Test User",
+        email: "test@example.com",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+    };
 
     return (
         <div>
-            <DesktopSidebar currentUser = {currentUser} />
-            <MobileFooter />
+            <DesktopSidebar currentUser={currentUser} />
+            {/* <MobileFooter /> */}
             <main className="lg:pl-20 h-full">{children}</main>
         </div>
     )
