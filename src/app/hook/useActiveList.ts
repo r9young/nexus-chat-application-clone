@@ -12,5 +12,11 @@ interface ActiveListStore {
 
 
 const useActiveList = create<ActiveListStore>((set) => ({
-
+    members:[],
+    add: (id) => set((state) => ({ members: [...state.members, id]})),
+    remove: (id) =>
+        set((state) => ({ members: state.members.filter((mId) => mId !== id) })),
+    set:(ids) => set(() => ({ members:ids}))
 }))
+
+export default useActiveList
