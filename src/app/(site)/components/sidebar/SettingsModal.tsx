@@ -55,9 +55,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 disabled={isLoading}
                                 label="Name"
                                 id="name"
-                                errors={{}}
-                                register={()=>({})}
-                                required={false}
+                                errors={errors}
+                                register={register}
+                                required
                             />
                             </div>
                                 <label className="block text-sm font-medium leading-6 text-gray-900">
