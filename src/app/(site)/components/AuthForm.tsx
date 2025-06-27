@@ -11,7 +11,6 @@ import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
 import AuthSocialButton from './AuthSocialButton';
 import { toast } from 'react-hot-toast';
 
-
 // new hooks
 import { useRouter } from 'next/navigation';
 import axios from 'axios';

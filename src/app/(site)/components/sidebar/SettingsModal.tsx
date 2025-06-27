@@ -7,7 +7,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { CldUploadButton } from 'next-cloudinary';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-// import Modal from '../Modal';
+import Modal from '../Modal';
 import Input from '../input/Input';
 import Image from 'next/image';
 import Button from '../Button';
@@ -25,11 +25,14 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     isOpen,
     onClose,
 }) => {
+    
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
 
     return (
-        <div>Testing !</div>
+        <Modal isOpen={isOpen} onClose={onClose}>
+            <div>Modal is opened</div>
+        </Modal>
     )
 }
 
