@@ -13,6 +13,8 @@ import Image from 'next/image';
 import Button from '../Button';
 
 
+
+
 interface SettingsModalProps {
     currentUser: User; 
     isOpen?: boolean;
@@ -31,19 +33,72 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
-                 {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-                 <form>
-                        <div className="space-y-12">
-                            <div className="border-b border-gray-900/10 pb-12">
-                                <h2 className="text-base font-semibold leading-7 text-gray-900">
-                                Profile ................................................................test
-                                </h2>
-                            </div>
-                            <div className="mt-10 flex flex-col gap-y-8">
-                          
-                        </div>
+            {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+            <form>
+                <div className="border-b border-gray-900/10 pb-12">
+                    <h2 className="text-base font-semibold leading-7 text-gray-900">
+                        Profile
+                    </h2>
+
+                    <p className="mt-1 text-sm leading-6 text-gray-600">
+                        Edit your profile details.
+                    </p>
+
+
+                    <div className="mt-10 flex flex-col gap-y-8">
+                    {/* Input will allow you to input the name  */}
+                     <Input
+                        disabled={isLoading}
+                        label="Name"
+                        id="name"
+                        errors={}
+                        register={}
+                        required={}
+                    />
                     </div>
-                </form>
+                        <label className="block text-sm font-medium leading-6 text-gray-900">
+                            Photo
+                        </label>
+                        <div className="mt-2 flex items-center gap-x-3">
+                            <Image
+                                width={48}
+                                height={48}
+                                src={currentUser?.image || '../../../../../public/image/avatar.jpg'}
+                                alt="avatar"
+                                className="rounded-full"
+                            />
+
+                            {/* what it is for */}
+                            <CldUploadButton
+                                options={{ maxFiles: 1 }}
+                                // onUpload={handleUpload}
+                                uploadPreset="jkyytcex"
+                            >
+                                <Button disabled={isLoading} type="button" secondary>
+                                    Change
+                                </Button>
+
+                            </CldUploadButton>
+
+                        </div>
+
+                    <div>
+                    
+
+                </div>
+
+                <div className="mt-6 flex items-center justify-end gap-x-6">
+                    <Button disabled={isLoading} onClick={onClose} secondary>
+                        Cancel
+                    </Button>
+                    <Button disabled={isLoading} type="submit">
+                        Save
+                    </Button>
+                </div>
+                
+                </div>
+    
+            </form>
     
         </Modal>
     )
