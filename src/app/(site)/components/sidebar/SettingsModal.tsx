@@ -26,6 +26,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     currentUser,
     isOpen,
     onClose,
+
 }) => {
 
     const router = useRouter();
@@ -51,9 +52,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                         disabled={isLoading}
                         label="Name"
                         id="name"
-                        errors={}
-                        register={}
-                        required={}
+                        errors={{}}
+                        register={()=>({})}
+                        required={false}
                     />
                     </div>
                         <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -63,7 +64,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                             <Image
                                 width={48}
                                 height={48}
-                                src={currentUser?.image || '../../../../../public/image/avatar.jpg'}
+                                src={currentUser?.image || '/avatar.jpg'}
                                 alt="avatar"
                                 className="rounded-full"
                             />
