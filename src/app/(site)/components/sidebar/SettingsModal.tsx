@@ -7,7 +7,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { CldUploadButton } from 'next-cloudinary';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import Modal from '../Modal';
+import Modal from '../../components/Modal';
 import Input from '../input/Input';
 import Image from 'next/image';
 import Button from '../Button';
@@ -25,13 +25,26 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     isOpen,
     onClose,
 }) => {
-    
+
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
-            <div>Modal is opened</div>
+                 {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+                 <form>
+                        <div className="space-y-12">
+                            <div className="border-b border-gray-900/10 pb-12">
+                                <h2 className="text-base font-semibold leading-7 text-gray-900">
+                                Profile
+                                </h2>
+                            </div>
+                            <div className="mt-10 flex flex-col gap-y-8">
+                          
+                        </div>
+                    </div>
+                </form>
+    
         </Modal>
     )
 }
