@@ -20,7 +20,16 @@ https://github.com/r9young/nexus-chat-application-clone/issues/56
 we are working on the issue 56 and 58
 
 
----
+### 28/06/2025
 
-Today, we focus on how to setup the SettingUp Profilo dailog box
-focus on the issue#39 and Issue#44
+We have read the Issue 56 - SettingModal/Input
+
+Then we develop a Issue[#58](https://github.com/r9young/nexus-chat-application-clone/issues/58) - understanding the useForm hook
+
+and further, we developed issues#59 how to use the useForm hook
+
+
+The useForm hook returns an object containing methods and state values that help manage form behavior. You can specify a preset type (FieldValues or a custom interface) to allow any shape of form inputs. It also accepts defaultValues to prefill the form fields.
+
+Since the object returned from useForm is immediately destructured, you can directly use its output—like register, handleSubmit, watch, etc.—in the body and return section of the component without referencing the full object again.
+
