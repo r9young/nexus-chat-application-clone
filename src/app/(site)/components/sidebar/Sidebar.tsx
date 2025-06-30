@@ -9,7 +9,7 @@ async function Sidebar({children}:{children: React.ReactNode}) {
     // Temporary mock user object for testing
     const currentUser = {
         id: "1",
-        name: "Test User",
+        name: "Xianjun Yang",
         email: "test@example.com",
         emailVerified: null,
         image: null,
