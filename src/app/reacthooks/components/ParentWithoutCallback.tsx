@@ -14,6 +14,7 @@ const ParentWithoutCallback = () => {
       <p>Count: {count}</p>
       <button onClick={() => setCount(count + 1)}>Increment</button>
       <ChildButton onClick={handleClick} />
+      <div>test</div>
     </div>
   );
 };
