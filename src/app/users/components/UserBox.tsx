@@ -36,18 +36,25 @@ const UserBox: React.FC<UserBoxProps> = ({ user }) => {
 
         axios
             // regarding post -> route.push: see issue#73
-            .post('/api/conversations', {
-                userId: user.id, 
+            // .post('/api/conversations', {
+            //     userId: user.id, 
+            // })
+            // .then((date) => {
+            //     // router.push(`/conversations/${data.data.id}`)
+            //      router.push(`/conversations/${response.data.id}`);
+            // })
+            // .finally(() => {
+            //     setIsLoading(false);
+            //     // set the isLoading back to false
+            // })
+            .post('/api/conversations', { userId: user.id })
+            .then((response) => {
+                router.push(`/conversations/${response.data.id}`);
             })
-            .then((date) => {
-                router.push(`/conversations/${data.data.id}`)
-            })
-            .finally(() => {
-                setIsLoading(false);
-                // set the isLoading back to false
-            })
-          
-    }, [user, router]);
+            .finally(() => setIsLoading(false));
+
+                    
+                }, [user, router]);
 
 
     return (
