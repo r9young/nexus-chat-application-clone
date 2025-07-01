@@ -2,10 +2,21 @@
 
 import Avatar from '../../(site)/components/Avatar'
 import { User } from '@prisma/client'
-import { data } from 'autoprefixer';
-import axios from 'axios'
+// import { data } from 'autoprefixer';
+// import axios from 'axios'
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react'
+import axios from 'axios';
+
+
+
+//Temporary Solution while Prisma is not initalized
+
+const mockUsers = [
+  { id: '1', name: 'Alice', email: 'alice@example.com' },
+  { id: '2', name: 'Bob', email: 'bob@example.com' },
+]
+
 
 interface UserBoxProps {
     user:User
@@ -29,7 +40,8 @@ const UserBox: React.FC<UserBoxProps> = ({ user }) => {
                 userId: user.id, 
             })
             .then((date) => {
-                router.push(`/conversations/${data.data.id}`)
+                // router.push(`/conversations/${data.data.id}`)
+                router.push(`/conversations/${response.data.id}`);
             })
             .finally(() => {
                 setIsLoading(false);
