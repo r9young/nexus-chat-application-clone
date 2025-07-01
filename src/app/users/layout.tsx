@@ -1,6 +1,7 @@
 // src/app/users/layout.tsx
 import { Metadata } from 'next';
 import Sidebar from '../../app/(site)/components/sidebar/Sidebar'
+import UserList from './components/UserList';
 
 export const metadata: Metadata = {
   title: 'All Users | Nexus - Your Ultimate Chat Experience',
@@ -14,7 +15,7 @@ export default function UsersLayout({
     return (
     <Sidebar>
       <div className=" h-full">
-        {/* <UserList users={users} /> */}
+        <UserList users={users} />
         {children}
       </div>
     </Sidebar>
