@@ -9,15 +9,6 @@ import { useCallback, useState } from 'react'
 import axios from 'axios';
 
 
-
-//Temporary Solution while Prisma is not initalized
-
-const mockUsers = [
-  { id: '1', name: 'Alice', email: 'alice@example.com' },
-  { id: '2', name: 'Bob', email: 'bob@example.com' },
-]
-
-
 interface UserBoxProps {
     user:User
     // see issue #70 & 71
