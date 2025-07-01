@@ -31,14 +31,12 @@ const UserBox: React.FC<UserBoxProps> = ({ user }) => {
         setIsLoading(true)
 
         axios
+            // regarding post -> route.push: see issue#73
             .post('/api/conversations', {
                 userId: user.id, 
-                // post is for the backend
-                // whares the router.push is for the front page navigation
             })
             .then((date) => {
                 router.push(`/conversations/${data.data.id}`)
-                // Issue: Property data does not exist on type
             })
             .finally(() => {
                 setIsLoading(false);
