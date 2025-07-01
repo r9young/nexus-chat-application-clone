@@ -1,18 +1,11 @@
 'use client'
 
-import Avatar from '@/app/components/Avatar'
-import LoadingModal from  ""
+import Avatar from '../../(site)/components/Avatar'
 import { User } from '@prisma/client'
 import { data } from 'autoprefixer';
 import axios from 'axios'
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react'
-// useCallback is a react hook that returns a memorized version of a callback function, 
-// meaning it will only re-create the function if its  dependencies change. 
-
-
-// if the user, or router changes - the useCallback hooker will run the handleClick function?
-
 
 interface UserBoxProps {
     user:User
@@ -48,8 +41,10 @@ const UserBox: React.FC<UserBoxProps> = ({ user }) => {
 
     return (
         <> 
+        {/* <></> is shorthand for <React.Fragment> */}
         {/* we used a React Library before which is to substute the <></>, what it is? */}
-            {isLoading && <LoadingModal />}
+            {/* {isLoading && <LoadingModal />} */}
+            {isLoading}
 
             <div
                 title="Start a chat"
@@ -65,11 +60,6 @@ const UserBox: React.FC<UserBoxProps> = ({ user }) => {
                 </div>
             </div>
         </>
-    )
-
-
-    return (
-        <div>Test</div>
     )
 }
 
