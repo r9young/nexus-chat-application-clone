@@ -16,9 +16,7 @@ import { useCallback, useState } from 'react'
 
 interface UserBoxProps {
     user:User
-    // currently, we haven't set up the @primas/client, so is there any temporary solution
-    // will it be easy to set up the @primas/client
-    // Is there an default format of User?
+    // see issue #70 & 71
 }
 
 const UserBox: React.FC<UserBoxProps> = ({ user }) => {
@@ -34,8 +32,9 @@ const UserBox: React.FC<UserBoxProps> = ({ user }) => {
 
         axios
             .post('/api/conversations', {
-                userId: user.id,
-                // so what it gonna to push `/api/conversations/userId:user.id?
+                userId: user.id, 
+                // post is for the backend
+                // whares the router.push is for the front page navigation
             })
             .then((date) => {
                 router.push(`/conversations/${data.data.id}`)
@@ -69,10 +68,6 @@ const UserBox: React.FC<UserBoxProps> = ({ user }) => {
             </div>
         </>
     )
-
-
-
-    
 
 
     return (
