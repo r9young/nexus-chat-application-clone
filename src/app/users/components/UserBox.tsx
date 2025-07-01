@@ -12,3 +12,73 @@ import { useCallback, useState } from 'react'
 
 
 // if the user, or router changes - the useCallback hooker will run the handleClick function?
+
+
+interface UserBoxProps {
+    user:User
+    // currently, we haven't set up the @primas/client, so is there any temporary solution
+    // will it be easy to set up the @primas/client
+    // Is there an default format of User?
+}
+
+const UserBox: React.FC<UserBoxProps> = ({ user }) => {
+    const router = useRouter();
+    // why do we use useRouter here
+    const [isLoading, setIsLoading ] = useState(false)
+    // set up the inital value of isLoading is false
+    // then it will use function setIsLoading to change the value, how to change it?!
+
+
+    const handleClick = useCallback (() => {
+        setIsLoading(true)
+
+        axios
+            .post('/api/conversations', {
+                userId: user.id,
+                // so what it gonna to push `/api/conversations/userId:user.id?
+            })
+            .then((date) => {
+                router.push(`/conversations/${data.data.id}`)
+                // Issue: Property data does not exist on type
+            })
+            .finally(() => {
+                setIsLoading(false);
+                // set the isLoading back to false
+            })
+          
+    }, [user, router]);
+
+
+    return (
+        <> 
+        {/* we used a React Library before which is to substute the <></>, what it is? */}
+            {isLoading && <LoadingModal />}
+
+            <div
+                title="Start a chat"
+                onClick={handleClick} // if we add a onClick here, does it mean it become a button
+                className="w-full relative flex items-center space-x-3 bg-white p-3 hover:bg-neutral-100 rounded-lg transition cursor-pointer"
+            >
+                <Avatar user = {user} />
+                <div className="min-w-0 flex-1">
+                    <div className="focus:outline-none">
+                        <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                        <p className="text-sm text-gray-500">{user.email}</p>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+
+
+
+    
+
+
+    return (
+        <div>Test</div>
+    )
+}
+
+
+export default UserBox;
