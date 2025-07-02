@@ -1,4 +1,4 @@
-`use client`;
+"use client";
 // why it is use client
 
 // import Button from '@/app/components/Button'
