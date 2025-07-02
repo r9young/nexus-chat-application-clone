@@ -44,6 +44,9 @@ export default async function UsersLayout({
   children: React.ReactNode;
 }) {
     const users = await getUsers();
+
+    console.log("Fetched users:", users);
+
     return (
     <Sidebar>
       <div className=" h-full">

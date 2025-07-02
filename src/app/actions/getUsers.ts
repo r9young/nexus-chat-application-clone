@@ -11,6 +11,7 @@ const getUsers = async () => {
     if (!session?.user?.email) return [];
 
     // Get all users except the current user
+    
     const users = await client.user.findMany({
       orderBy: {
         createdAt: 'desc',
