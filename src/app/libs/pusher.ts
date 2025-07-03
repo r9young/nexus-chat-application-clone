@@ -6,10 +6,9 @@ import PusherClient from 'pusher-js'
 // NEXT_PUBLIC_PUSHER_APP_KEY
 // PUSHER_SECRET
 // NEXT_PUBLIC_PUSHER_APP_KEY
-// cluster
-// useTLS
 
-export const PusherServer = new PusherServer({
+
+export const pusherServer = new PusherServer({
     appId: process.env.PUSHER_APP_ID!,
     key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
     secret: process.env.PUSHER_SECRET!,
@@ -20,7 +19,7 @@ export const PusherServer = new PusherServer({
 // exmaple of how to apply pusherServer
 // e.g await pusherServer.trigger(conversationId, 'messages:new', newMessage);
 
-
+//
 export const pusherClient = new PusherClient (
     process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
     {
