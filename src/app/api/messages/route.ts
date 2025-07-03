@@ -16,14 +16,16 @@ export async function POST (request: Request) {
 
         // --- POST the message ---
         const newMessage = await prisma.message.create({
-        data: {
-            body: message,
-            image,
-            conversation: { connect: { id: conversationId } },
-            sender: { connect: { id: currentUser.id } },
-            seen: { connect: { id: currentUser.id } },
-        },
-        include: { sender: true, seen: true },
+        // data is the object. 
+            data: {
+                // these things are act as "props"(input) for POST function
+                body: message,
+                image,
+                conversation: { connect: { id: conversationId } },
+                sender: { connect: { id: currentUser.id } },
+                seen: { connect: { id: currentUser.id } },
+            },
+            include: { sender: true, seen: true },
         });
         // -----------------------
 
