@@ -3,10 +3,10 @@
 import Avatar from '../../(site)/components/Avatar'
 import { User } from '@prisma/client'
 // import { data } from 'autoprefixer';
-// import axios from 'axios'
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react'
 import axios from 'axios';
+import LoadingModal from '../components/UserList'
 
 
 interface UserBoxProps {
@@ -42,10 +42,10 @@ const UserBox: React.FC<UserBoxProps> = ({ user }) => {
             .then((response) => {
                 router.push(`/conversations/${response.data.id}`);
             })
-            .finally(() => setIsLoading(false));
-
-                    
-                }, [user, router]);
+            .finally(() => {
+            setIsLoading(false);
+            });
+            }, [user, router]);
 
 
     return (
@@ -53,7 +53,7 @@ const UserBox: React.FC<UserBoxProps> = ({ user }) => {
         {/* <></> is shorthand for <React.Fragment> */}
         {/* we used a React Library before which is to substute the <></>, what it is? */}
             {/* {isLoading && <LoadingModal />} */}
-            {isLoading}
+            {isLoading && <LoadingModal />}
 
             <div
                 title="Start a chat"
