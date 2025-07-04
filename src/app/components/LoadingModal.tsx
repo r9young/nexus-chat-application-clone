@@ -19,10 +19,10 @@ const LoadingModal = () => {
             <Transition.Child
                 // we add a Transition.Root, but actual effect of Transition is set under Transition.Child?
                 as={Fragment}
-                enter="ease-out duration-300"
+                enter="ease-out duration-700"
                 enterFrom="opacity-0"
                 enterTo="opacity-100"
-                leave="ease-in duration-200"
+                leave="ease-in duration-800"
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
             >

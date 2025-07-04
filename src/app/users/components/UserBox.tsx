@@ -6,7 +6,8 @@ import { User } from '@prisma/client'
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react'
 import axios from 'axios';
-import LoadingModal from '../components/UserList'
+// import LoadingModal from '../components/UserList'
+import LoadingModal from '../../components/LoadingModal';
 
 
 interface UserBoxProps {
@@ -52,8 +53,8 @@ const UserBox: React.FC<UserBoxProps> = ({ user }) => {
         <> 
             {isLoading && <LoadingModal />}
             {/* Debug:
-            Property 'users' is missing in type '{}' but required in type 'UserListProps'.ts(2741)
-            UserList.tsx(7, 5): 'users' is declared here. */}
+                Property 'users' is missing in type '{}' but required in type 'UserListProps'.ts(2741)
+                UserList.tsx(7, 5): 'users' is declared here. */}
             <div
                 title="Start a chat"
                 onClick={handleClick} // if we add a onClick here, does it mean it become a button
