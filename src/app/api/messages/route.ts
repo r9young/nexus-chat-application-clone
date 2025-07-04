@@ -6,13 +6,19 @@ import { pusherServer } from '../../libs/pusher' // what is the effect of pushSe
 
 export async function POST (request: Request) {
     try {
-        const currentUser = await getCurrentUser();
+
+        const currentUser = {
+        id: '685a53224f60228a49ec598d',
+        email: 'r9young@hotmail.com'
+        };
+
+        // const currentUser = await getCurrentUser();
         const body = await request.json();
         const { message, image, conversationId } = body;
 
-        if (!currentUser?.id || !currentUser?.email) {
-        return new NextResponse('Unauthorized', { status: 401 });
-        }
+        // if (!currentUser?.id || !currentUser?.email) {
+        // return new NextResponse('Unauthorized', { status: 401 });
+        // }
 
         // --- POST the message ---
         const newMessage = await prisma.message.create({
