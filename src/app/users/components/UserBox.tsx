@@ -50,11 +50,10 @@ const UserBox: React.FC<UserBoxProps> = ({ user }) => {
 
     return (
         <> 
-        {/* <></> is shorthand for <React.Fragment> */}
-        {/* we used a React Library before which is to substute the <></>, what it is? */}
-            {/* {isLoading && <LoadingModal />} */}
             {isLoading && <LoadingModal />}
-
+            {/* Debug:
+            Property 'users' is missing in type '{}' but required in type 'UserListProps'.ts(2741)
+            UserList.tsx(7, 5): 'users' is declared here. */}
             <div
                 title="Start a chat"
                 onClick={handleClick} // if we add a onClick here, does it mean it become a button
