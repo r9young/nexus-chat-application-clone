@@ -185,3 +185,15 @@ Would you like a diagram version or want to convert this into a Markdown file fo
 
 so last week, we have successfully tested the POST function. 
 
+
+To connect the POST API and Front:[#112](https://github.com/r9young/nexus-chat-application-clone/issues/112)
+
+- What are /conversations/[conversationId] and axios.post('/api/messages', {...}) doing respectively?
+- Using the POST /api/messages route for message submission
+- Why Form.tsx doesn’t import the POST handler for /api/messages?
+
+
+We add the POST Request and connect it to the front, but it is not enought. as:
+
+The app tries to POST to /api/conversations to create a new conversation and then navigate to /conversations/[conversationId]. But since no /api/conversations route exists, the POST fails silently, and the UI stays on the loading page — never reaching the conversation page.
+

@@ -3,8 +3,8 @@ import EmptyState from '../../components/EmptyState';
 import getConversationById from '../../actions/getConversationById';
 import getMessages from '../../actions/getMessages'
 
-import Header from './components/Header';
-import Body from './components/Body';
+// import Header from './components/Header';
+// import Body from './components/Body';
 import Form from './components/Form';
 
 interface IParams {
@@ -29,8 +29,8 @@ const ConversationId = async ({ params }: { params: IParams }) => {
     return (
         <div className="lg:pl-80 h-full">
         <div className="h-full flex flex-col">
-            <Header />
-            <Body  />
+            {/* <Header />
+            <Body  /> */}
             <Form />
         </div>
         </div>
