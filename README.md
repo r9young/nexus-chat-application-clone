@@ -185,3 +185,10 @@ Would you like a diagram version or want to convert this into a Markdown file fo
 
 so last week, we have successfully tested the POST function. 
 
+
+To connect the POST API and Front:[#112](https://github.com/r9young/nexus-chat-application-clone/issues/112)
+
+- What are /conversations/[conversationId] and axios.post('/api/messages', {...}) doing respectively?
+- Using the POST /api/messages route for message submission
+- Why Form.tsx doesn’t import the POST handler for /api/messages?
+
