@@ -45,7 +45,7 @@ export default async function UsersLayout({
 }) {
     const users = await getUsers();
 
-    console.log("Fetched users:", users);
+    // console.log("Fetched users:", users);
 
     return (
     <Sidebar>

@@ -13,5 +13,7 @@ if (process.env.NODE_ENV !== 'production') globalThis['prisma'] = client;
 
 export default client; 
 
+// so the code create PrismaClient instance. 
+
 
 // then next step will go to getUssers.tsx to use the instance and muniplate the database

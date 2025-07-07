@@ -6,9 +6,9 @@ import getSession from './getSession'
 
 const getUsers = async () => {
   try {
-    console.log("Fetching session...");
+    // console.log("Fetching session...");
     const session = await getSession();
-    console.log("Session:", session);
+    // console.log("Session:", session);
 
     if (!session?.user?.email) return [];
 
