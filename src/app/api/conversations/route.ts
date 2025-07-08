@@ -17,7 +17,7 @@ export async function POST (request: Request) {
             return new NextResponse('Unauthorized', {status: 401})
         }
 
-
+        // Searches database for an existing converation between two users
         const existingConversations = await prisma.conversation.findMany({
         where: {
             OR: [
@@ -39,7 +39,6 @@ export async function POST (request: Request) {
 
 
         // Create a new Single Conversation
-
         const newConversation = await prisma.conversation.create({
             data: {
                 users: {
