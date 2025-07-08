@@ -185,3 +185,17 @@ Would you like a diagram version or want to convert this into a Markdown file fo
 
 so last week, we have successfully tested the POST function. 
 
+
+8th July 2025
+
+So we review the message API & conversaton API
+
+we understand the relationship between two
+
+message API --> form
+
+conversaton API -> content
+
+form & content --> page
+
+so actuall message and conversation are getting together to create a page. 
