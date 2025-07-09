@@ -1,6 +1,5 @@
 'use client'
 
-import { Children } from 'react';
 import Modal from '../../../(site)/components/Modal'
 import Image from 'next/image'
 
