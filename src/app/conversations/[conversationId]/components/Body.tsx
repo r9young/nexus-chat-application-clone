@@ -1,9 +1,46 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FullMessageType } from '@/app/types';
-import useConversation from '@/app/hooks/useConversation';
 import MessageBox from './MessageBox';
-import axios from 'axios';
-import { pusherClient } from '@/app/libs/pusher';
-import { find } from 'lodash';
+
+const Body = () => {
+  const [messages, setMessages] = useState<FullMessageType[]>([]);
+
+  useEffect(() => {
+    fetch('/mockData/mockMessages.json') // from the public directory
+      .then((response) => response.json())
+      .then((data: FullMessageType[]) => {
+        // Parse dates explicitly
+        const parsedData = data.map((msg) => ({
+          ...msg,
+          createdAt: new Date(msg.createdAt),
+          sender: {
+            ...msg.sender,
+            createdAt: new Date(msg.sender.createdAt),
+            updatedAt: new Date(msg.sender.updatedAt),
+          },
+          seen: msg.seen.map((user) => ({
+            ...user,
+            createdAt: new Date(user.createdAt),
+            updatedAt: new Date(user.updatedAt),
+          })),
+        }));
+        setMessages(parsedData);
+      });
+  }, []);
+
+  return (
+    <div className="flex-1 overflow-y-auto">
+      {messages.map((message, i) => (
+        <MessageBox
+          isLast={i === messages.length - 1}
+          key={message.id}
+          data={message}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default Body;
