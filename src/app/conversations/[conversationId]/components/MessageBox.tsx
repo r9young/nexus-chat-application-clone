@@ -61,10 +61,22 @@ const MessageBox: React.FC<MessageBoxProps> = ({ isLast, data }) => {
                     <div className={message}>
                         <ImageModal
                             isOpen={isImageModalOpen}
-                            src={data.image}
+                            src={data.image ?? undefined}
                             onClose={() => setIsImageModalOpen(false)}
                         />
-                        
+
+                            {data.image ? (
+                                <Image
+                                    onClick={() => setIsImageModalOpen(true)}
+                                    src={data.image}
+                                    width={288}
+                                    height={288}
+                                    alt="image"
+                                    className="object-cover cursor-pointer hover:scale-110 transition translate"
+                                />
+                            ) : (
+                                <div>{data.body}</div>
+                            )} 
                     </div>
                 </div>
             </div>
