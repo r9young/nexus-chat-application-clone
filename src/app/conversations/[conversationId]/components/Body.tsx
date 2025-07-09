@@ -4,7 +4,12 @@ import { useState, useEffect } from 'react';
 import { FullMessageType } from '@/app/types';
 import MessageBox from './MessageBox';
 
-const Body = () => {
+interface BodyProps {
+  initialMessages: FullMessageType[];
+}
+
+
+const Body: React.FC<BodyProps> = ({ initialMessages }) => {
   const [messages, setMessages] = useState<FullMessageType[]>([]);
 
   useEffect(() => {

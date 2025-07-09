@@ -5,77 +5,7 @@
     "image": null,
     "createdAt": "2024-07-09T09:00:00Z",
     "sender": {
-      "id": "6566f5f4c3a0a0a0a0a0a0b1",
-      "email": "alice@example.com",
-      "name": "Alice",
-      "emailVerified": null,
-      "image": null,
-      "hashedPassword": null,
-      "createdAt": "2024-06-01T10:00:00Z",
-      "updatedAt": "2024-07-01T10:00:00Z",
-      "conversationIds": [],
-      "seenMessageIds": []
-    },
-    "seen": [
-      {
-        "id": "6566f5f4c3a0a0a0a0a0a0b2",
-        "email": "bob@example.com",
-        "name": "Bob",
-        "emailVerified": null,
-        "image": null,
-        "hashedPassword": null,
-        "createdAt": "2024-06-02T10:00:00Z",
-        "updatedAt": "2024-07-02T10:00:00Z",
-        "conversationIds": [],
-        "seenMessageIds": []
-      }
-    ],
-    "senderId": "6566f5f4c3a0a0a0a0a0a0b1",
-    "conversationId": "6566f5f4c3a0a0a0a0a0a0c1",
-    "seenIds": ["6566f5f4c3a0a0a0a0a0a0b2"]
-  },
-  {
-    "id": "6566f5f4c3a0a0a0a0a0a0a2",
-    "body": "I am good, thanks!",
-    "image": null,
-    "createdAt": "2024-07-09T09:05:00Z",
-    "sender": {
-      "id": "6566f5f4c3a0a0a0a0a0a0b2",
-      "email": "bob@example.com",
-      "name": "Bob",
-      "emailVerified": null,
-      "image": null,
-      "hashedPassword": null,
-      "createdAt": "2024-06-02T10:00:00Z",
-      "updatedAt": "2024-07-02T10:00:00Z",
-      "conversationIds": [],
-      "seenMessageIds": []
-    },
-    "seen": [
-      {
-        "id": "6566f5f4c3a0a0a0a0a0a0b1",
-        "email": "alice@example.com",
-        "name": "Alice",
-        "emailVerified": null,
-        "image": null,
-        "hashedPassword": null,
-        "createdAt": "2024-06-01T10:00:00Z",
-        "updatedAt": "2024-07-01T10:00:00Z",
-        "conversationIds": [],
-        "seenMessageIds": []
-      }
-    ],
-    "senderId": "6566f5f4c3a0a0a0a0a0a0b2",
-    "conversationId": "6566f5f4c3a0a0a0a0a0a0c1",
-    "seenIds": ["6566f5f4c3a0a0a0a0a0a0b1"]
-  },
-  {
-    "id": "6566f5f4c3a0a0a0a0a0a0a3",
-    "body": null,
-    "image": "/images/mock-image.jpg",
-    "createdAt": "2024-07-09T09:10:00Z",
-    "sender": {
-      "id": "6566f5f4c3a0a0a0a0a0a0b1",
+      "id": "685a53224f60228a49ec598d",
       "email": "alice@example.com",
       "name": "Alice",
       "emailVerified": null,
@@ -87,7 +17,51 @@
       "seenMessageIds": []
     },
     "seen": [],
-    "senderId": "6566f5f4c3a0a0a0a0a0a0b1",
+    "senderId": "685a53224f60228a49ec598d",
+    "conversationId": "6566f5f4c3a0a0a0a0a0a0c1",
+    "seenIds": []
+  },
+  {
+    "id": "6566f5f4c3a0a0a0a0a0a0a2",
+    "body": "I am good, thanks!",
+    "image": null,
+    "createdAt": "2024-07-09T09:05:00Z",
+    "sender": {
+      "id": "685a53224f60228a49ec598d",
+      "email": "alice@example.com",
+      "name": "Alice",
+      "emailVerified": null,
+      "image": null,
+      "hashedPassword": null,
+      "createdAt": "2024-06-01T10:00:00Z",
+      "updatedAt": "2024-07-01T10:00:00Z",
+      "conversationIds": [],
+      "seenMessageIds": []
+    },
+    "seen": [],
+    "senderId": "685a53224f60228a49ec598d",
+    "conversationId": "6566f5f4c3a0a0a0a0a0a0c1",
+    "seenIds": []
+  },
+  {
+    "id": "6566f5f4c3a0a0a0a0a0a0a3",
+    "body": null,
+    "image": "/images/mock-image.jpg",
+    "createdAt": "2024-07-09T09:10:00Z",
+    "sender": {
+      "id": "685a53224f60228a49ec598d",
+      "email": "alice@example.com",
+      "name": "Alice",
+      "emailVerified": null,
+      "image": null,
+      "hashedPassword": null,
+      "createdAt": "2024-06-01T10:00:00Z",
+      "updatedAt": "2024-07-01T10:00:00Z",
+      "conversationIds": [],
+      "seenMessageIds": []
+    },
+    "seen": [],
+    "senderId": "685a53224f60228a49ec598d",
     "conversationId": "6566f5f4c3a0a0a0a0a0a0c1",
     "seenIds": []
   }
