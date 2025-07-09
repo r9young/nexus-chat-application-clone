@@ -4,6 +4,8 @@ import EmptyState from "@/app/components/EmptyState";
 // import Header 
 import Body from './components/Body';
 import Form from "../[conversationId]/components/Form";
+import message from './components/mockMessage.json'
+
 
 interface IParams {
     conversationId: string;
@@ -27,12 +29,14 @@ const ConversationId = async ({ params }: { params: IParams }) => {
     }
 
     return(
-        <Body initialMessages={messages}/> 
-        // The Body component holds the current list of messages in state, 
-        // updates it via Pusher, and renders each message using MessageBox
-        <Form/> // submit message
-    )
+        <div className="lg:pl-80 h-full">
+            <div className="h-full flex flex-col">
+                <Body initialMessages={message} />
+                <Form/> 
 
+            </div>
+        </div>
+      )
 }
 
 
