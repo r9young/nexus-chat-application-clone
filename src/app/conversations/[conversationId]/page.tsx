@@ -12,6 +12,17 @@ interface IParams {
     conversationId: string;
 }
 
+// before importing the json into initialMessages, so we fixed up the type of 'createAt' before importing
+const typedMessages: FullMessageType[] = message.map((m) => ({
+  ...m,
+  createdAt: new Date(m.createdAt),
+  sender: {
+    ...m.sender,
+    createdAt: new Date(m.sender.createdAt),
+    updatedAt: new Date(m.sender.updatedAt),
+  },
+}));
+
 
 // so actually, it export the conversation page
 const ConversationId = async ({ params }: { params: IParams }) => {
@@ -32,7 +43,7 @@ const ConversationId = async ({ params }: { params: IParams }) => {
     return(
         <div className="lg:pl-80 h-full">
             <div className="h-full flex flex-col">
-                <Body initialMessages={message} />
+                <Body initialMessages={typedMessages} />
                 <Form/> 
 
             </div>
