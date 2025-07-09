@@ -1,39 +1,60 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FullMessageType } from '@/app/types';
+import useConversation from '@/app/hooks/useConversation';
 import MessageBox from './MessageBox';
+import axios from 'axios';
+import { pusherClient } from '@/app/libs/pusher';
+import { find } from 'lodash';
 
 interface BodyProps {
   initialMessages: FullMessageType[];
 }
 
-
 const Body: React.FC<BodyProps> = ({ initialMessages }) => {
-  const [messages, setMessages] = useState<FullMessageType[]>([]);
+  const [messages, setMessages] = useState(initialMessages);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  const { conversationId } = useConversation();
 
   useEffect(() => {
-    fetch('/mockData/mockMessages.json') // from the public directory
-      .then((response) => response.json())
-      .then((data: FullMessageType[]) => {
-        // Parse dates explicitly
-        const parsedData = data.map((msg) => ({
-          ...msg,
-          createdAt: new Date(msg.createdAt),
-          sender: {
-            ...msg.sender,
-            createdAt: new Date(msg.sender.createdAt),
-            updatedAt: new Date(msg.sender.updatedAt),
-          },
-          seen: msg.seen.map((user) => ({
-            ...user,
-            createdAt: new Date(user.createdAt),
-            updatedAt: new Date(user.updatedAt),
-          })),
-        }));
-        setMessages(parsedData);
+    axios.post(`/api/conversations/${conversationId}/seen`);
+  }, [conversationId]);
+
+  useEffect(() => {
+    pusherClient.subscribe(conversationId);
+    bottomRef?.current?.scrollIntoView();
+
+    const messageHandler = (message: FullMessageType) => {
+      axios.post(`/api/conversations/${conversationId}/seen`);
+
+      setMessages((prevMessages) => {
+        if (find(prevMessages, { id: message.id })) return prevMessages;
+        return [...prevMessages, message];
       });
-  }, []);
+
+      bottomRef?.current?.scrollIntoView();
+    };
+
+    const updateMessageHandler = (newMessage: FullMessageType) => {
+      setMessages((prevMessages) =>
+        prevMessages.map((message) => {
+          if (message.id === newMessage.id) return newMessage;
+          return message;
+        })
+      );
+    };
+
+    pusherClient.bind('messages:new', messageHandler);
+    pusherClient.bind('message:update', updateMessageHandler);
+
+    return () => {
+      pusherClient.unsubscribe(conversationId);
+      pusherClient.unbind('messages:new', messageHandler);
+      pusherClient.bind('messages:update', updateMessageHandler);
+    };
+  }, [conversationId]);
 
   return (
     <div className="flex-1 overflow-y-auto">
@@ -44,8 +65,9 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
           data={message}
         />
       ))}
+
+      <div ref={bottomRef} className="pt-24" />
     </div>
   );
 };
-
 export default Body;
