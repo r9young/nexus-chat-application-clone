@@ -5,7 +5,8 @@ import EmptyState from "@/app/components/EmptyState";
 import Body from './components/Body';
 import Form from "../[conversationId]/components/Form";
 import message from './components/mockMessage.json'
-
+import React from 'react';  
+import { FullMessageType } from '../../types';
 
 interface IParams {
     conversationId: string;
