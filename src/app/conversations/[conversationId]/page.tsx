@@ -2,8 +2,8 @@ import getConversationById from "@/app/actions/getConversationById";
 import getMessages from "@/app/actions/getMessages";
 import EmptyState from "@/app/components/EmptyState";
 // import Header 
-// import Body
-import Form from "../[conversationId]/components/Form"
+import Body from './components/Body';
+import Form from "../[conversationId]/components/Form";
 
 interface IParams {
     conversationId: string;
@@ -27,7 +27,7 @@ const ConversationId = async ({ params }: { params: IParams }) => {
     }
 
     return(
-        // <Body /> 
+        <Body initialMessages={messages}/> 
         // The Body component holds the current list of messages in state, 
         // updates it via Pusher, and renders each message using MessageBox
         <Form/> // submit message
