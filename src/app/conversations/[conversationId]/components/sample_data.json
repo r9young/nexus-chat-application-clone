@@ -1,0 +1,26 @@
+{
+  "id": "65a0f5e4b2d1c12345678901",
+  "body": "Hello, this is a text message.",
+  "image": null,
+  "createdAt": "2024-07-10T01:00:00Z",
+  "sender": {
+    "id": "685a53224f60228a49ec598d",
+    "email": "john@example.com",
+    "name": "John Doe",
+    "image": "/avatars/john.png"
+  },
+  "seen": [
+    {
+      "id": "692b45234f70228a49ec9999",
+      "email": "alice@example.com",
+      "name": "Alice Smith",
+      "image": "/avatars/alice.png"
+    },
+    {
+      "id": "702c46245f80228a49ec0000",
+      "email": "bob@example.com",
+      "name": "Bob Johnson",
+      "image": "/avatars/bob.png"
+    }
+  ]
+}
