@@ -6,6 +6,7 @@ import { useState } from 'react'
 import clsx from 'clsx';
 import Avatar from '../../../../app/(site)/components/Avatar';
 import Image from 'next/image';
+import ImageModal from './ImageModal'
 
 interface MessageBoxProps {
     isLast: boolean;
@@ -65,11 +66,11 @@ const MessageBox: React.FC<MessageBoxProps> = ({ isLast, data }) => {
                     {/* Message/Picture */}
                     <div className={message}>
                         {/* imageModa - wehn a user clicks an image in a message. Then it will display the image in a modal popup */}
-                        {/* <ImageModal
+                        <ImageModal
                         isOpen={isImageModalOpen}
                         src={data.image}
                         onClose={() => setIsImageModalOpen(false)}
-                        /> */}
+                        />
 
                         {data.image ? (
                             <Image
