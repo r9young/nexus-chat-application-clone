@@ -84,18 +84,6 @@ const MessageBox: React.FC<MessageBoxProps> = ({ isLast, data }) => {
         </div>
     )
 
-    
-
-
-
-
-
-
-
-
-
-
-
 }
 
 export default MessageBox;
