@@ -1,187 +1,265 @@
-### 21/06/2025
+### 10th July 2025
 
-we have been reviewing the AuthForm.tsx. We reviewed these next and react hookers. Especially, the useState (without any State Declaration).
+## Detailed Learning & Issue‑Resolution Report
 
-
-we will contine to reveiw the customerized component - AuthForm.tsx
-
-
-
-### 27/06/2025
-
-We still need to focus on the Modal -> SettingModals --> DesktopSideBar
-
-current I am working on the SettingModal/Input
-
-try to understand how to use Input and UseForm hook
-
-https://github.com/r9young/nexus-chat-application-clone/issues/56
-
-we are working on the issue 56 and 58
-
-
-### 28/06/2025
-
-We have read the Issue 56 - SettingModal/Input
-
-Then we develop a Issue[#58](https://github.com/r9young/nexus-chat-application-clone/issues/58) - understanding the useForm hook
-
-and further, we developed issues#59 how to use the useForm hook
-
-
-The useForm hook returns an object containing methods and state values that help manage form behavior. You can specify a preset type (FieldValues or a custom interface) to allow any shape of form inputs. It also accepts defaultValues to prefill the form fields.
-
-Since the object returned from useForm is immediately destructured, you can directly use its output—like register, handleSubmit, watch, etc.—in the body and return section of the component without referencing the full object again.
-
-
-
-### 30/06/2025
-
-- we finalzied the setting Modal
-- we start to create user page, it will be page with all the user but no conversation
-- so we create folder - 'users'
-- we are working on how to understanding the momery and useCallback react hook function
-
-
-### 03/07/2025
-
-You are asking me to incorporate the suggested improvements directly into your blog post while keeping your original tone and structure.
-
-Here is your **updated blog with all improvements included**:
+**(10 July 2025 – all issues and sub‑issues, with expanded solutions and reference links)**
 
 ---
 
-## Building Conversation Page
+## 1. Prop Drilling vs. Forwarding Props
 
-### The Relationship Between `/conversations` and `/conversations/[conversationId]`
+**What you learned:**
+Prop drilling involves passing data through each intermediate component via props, while forwarding props is how you implement it.
 
-In this blog, I summarize how the conversation and messaging features work in our chat app, including the structure of routes, database handling with Prisma, and real-time updates using Pusher.
+**Issue:**
+Uncertain when prop drilling becomes an anti-pattern and available alternatives.
 
-This morning, we started by thinking about how to create the conversation page. Then we realized that it's not as simple as just creating a UI page and connecting it to the backend. First, we realized that we not only need a general conversation page (`/conversations`) but also a dynamic route to display messages for a specific conversation (`/conversations/[conversationId]`).
+**Detailed Solution:**
 
-Things to think about:
+* Use prop drilling for shallow component trees (one or two levels).
+* For deep or complex hierarchies, utilize React Context or global state management libraries like Redux or Zustand to avoid complex prop chains.
 
-* What is `app/conversations/`?
-* What is `app/conversations/[conversationId]/`?
+**Example:**
 
-Think about the following analogy:
+```jsx
+const ThemeContext = createContext('light');
 
-* Conversations are like a block of buildings.
-* Each building contains rooms.
-* The `conversationId` tells the backend where to show the message — like which room to deliver the message to.
-* But all the messages are actually saved in the database.
-
-So when we need it, the system starts delivering the relevant messages.
-
----
-
-### Starting Point: `lib` Folder
-
-We realized there are many files involved in building the conversation and individual conversation pages. But we decided to start from the `lib` folder, which contains `schema.prisma` and `prismadb.ts`.
-
----
-
-### `schema.prisma` and `pusher.ts`
-
-* `schema.prisma` contains the schema definitions that define and update the database structure.
-* `pusher.ts` is used not only in API routes but also when creating new conversations and broadcasting real-time updates using Pusher.
-
-Here’s what a sample `Message` model looks like in the Prisma schema:
-
-```prisma
-model Message {
-  id             String      @id @default(uuid())
-  body           String
-  createdAt      DateTime    @default(now())
-  conversation   Conversation @relation(fields: [conversationId], references: [id])
-  conversationId String
-  sender         User        @relation(fields: [senderId], references: [id])
-  senderId       String
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
 }
 ```
 
-Each message is tied to a conversation and a sender. This allows us to filter messages by `conversationId` when displaying them.
+**Reference:** [Issue #136](https://github.com/r9young/nexus-chat-application-clone/issues/136)
 
 ---
 
-### The Whole Process Is Like:
+## 2. Triggering ImageModal
 
-| Step | What Happens                    | Tools Used     |
-| ---- | ------------------------------- | -------------- |
-| 1    | Save message to database        | Prisma         |
-| 2    | Trigger real-time update        | `pusherServer` |
-| 3    | Wait/Listen for new message     | `pusherClient` |
-| 4    | Receive and display new message | `pusherClient` |
+**What you learned:**
+The modal is triggered by an `onClick` event in the Image component, updating state.
+
+**Issue:**
+Couldn't trace the state update from click to modal opening.
+
+**Detailed Solution:**
+
+1. Image component sets `selectedImage` state on click.
+2. Parent component uses `useEffect` to monitor `selectedImage`; sets `isOpen` true when image is selected.
+3. Pass `isOpen`, `onClose`, and `src={selectedImage}` to ImageModal.
+4. Closing the modal resets `selectedImage` to null.
+
+**Reference:** [Issue #135](https://github.com/r9young/nexus-chat-application-clone/issues/135)
 
 ---
 
-### Code in `pusher.ts`
+## 3. Code Review: ImageModal
 
-```ts
-import PusherServer from 'pusher';
-import PusherClient from 'pusher-js';
+### 3.1 {children} Error
 
-// PUSHER_APP_ID
-// NEXT_PUBLIC_PUSHER_APP_KEY
-// PUSHER_SECRET
+**What you learned:**
+Reusable components must render the `{children}` prop.
 
-export const pusherServer = new PusherServer({
-  appId: process.env.PUSHER_APP_ID!,
-  key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
-  secret: process.env.PUSHER_SECRET!,
-  cluster: 'ap2',
-  useTLS: true,
-});
+**Issue:**
+Modal component was empty due to missing `{children}` prop.
 
-// Example of how to use pusherServer
-// e.g. await pusherServer.trigger(conversationId, 'messages:new', newMessage);
+**Detailed Solution:**
 
-export const pusherClient = new PusherClient(
-  process.env.NEXT_PUBLIC_PUSHER_APP_KEY!,
-  {
-    channelAuthorization: {
-      endpoint: '/api/pusher/auth',
-      transport: 'ajax',
-    },
-    cluster: 'ap2',
-  }
-);
+```tsx
+function Modal({ isOpen, onClose, children }: ModalProps) {
+  if (!isOpen) return null;
+  return (
+    <div className="backdrop" onClick={onClose}>
+      <div className="content" onClick={e => e.stopPropagation()}>
+        {children} {/* <- required for rendering content */}
+      </div>
+    </div>
+  );
+}
 ```
 
+**Reference:** [Issue #134](https://github.com/r9young/nexus-chat-application-clone/issues/134)
+
+### 3.2 Explicit Prop Definitions
+
+**What you learned:**
+Components should declare their own prop interfaces explicitly for clarity and safety.
+
+**Issue:**
+Questioned redundancy in redeclaring shared props.
+
+**Detailed Solution:**
+
+* Explicit local prop declaration provides clarity and type safety.
+* Ensures component reusability and easier debugging.
+
+```tsx
+interface ImageModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  src: string;
+}
+
+const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, src }) => { … };
+```
+
+**Reference:** [Issue #134](https://github.com/r9young/nexus-chat-application-clone/issues/134)
+
+### 3.3 Prop-Drilling Clarification
+
+**What you learned:**
+Clarified when to use prop drilling versus Context.
+
+**Issue:**
+Needed further conceptual clarity.
+
+**Detailed Solution:**
+Refer to detailed explanation provided under Issue #1; consider Context for complex scenarios.
+
+**Reference:** [Issue #136](https://github.com/r9young/nexus-chat-application-clone/issues/136)
+
 ---
 
-### Where Do We Get the Values for:
+## 4. Conversation\_Page\_Rebuilt
 
-* `PUSHER_APP_ID`
-* `NEXT_PUBLIC_PUSHER_APP_KEY`
-* `PUSHER_SECRET`
+### 4.1 Destructuring Props
 
-→ You can find them in your Pusher dashboard: [https://dashboard.pusher.com/](https://dashboard.pusher.com/), and set them in the `.env.local` file.
+**What you learned:**
+ES6 destructuring syntax for cleaner, readable code.
+
+**Issue:**
+Uncertainty about using curly braces for destructuring (`{ isLast, data }`).
+
+**Detailed Solution:**
+
+* Curly braces destructure props directly for simpler reference.
+* Without destructuring, you'd have to reference `props.isLast` and `props.data` explicitly.
+
+**Reference:** [Issue #132](https://github.com/r9young/nexus-chat-application-clone/issues/132)
+
+### 4.2 Using useSession()
+
+**What you learned:**
+Proper handling of authentication with NextAuth's `useSession()` hook.
+
+**Issue:**
+How to manage unauthenticated states safely.
+
+**Detailed Solution:**
+
+```tsx
+const { data: session, status } = useSession();
+
+if (status === 'loading') return <Spinner />;
+if (status === 'unauthenticated') router.push('/login');
+
+const user = session?.user;
+```
+
+**Reference:** [Issue #133](https://github.com/r9young/nexus-chat-application-clone/issues/133)
+
+### 4.3 Building seenList
+
+**What you learned:**
+Managing read receipts effectively.
+
+**Issue:**
+Needed method to track users who viewed messages.
+
+**Detailed Solution:**
+
+* Use an array (e.g., `seenBy: string[]`) on message objects.
+* Add user IDs to the array upon message viewing.
+* Use `.includes(userId)` for conditional UI rendering.
+
+**Reference:** [Issue #131](https://github.com/r9young/nexus-chat-application-clone/issues/131)
+
+### 4.4 Click Flow in Image
+
+**What you learned:**
+Tracking event propagation and state updates.
+
+**Issue:**
+Clarity on `onClick` event flow.
+
+**Detailed Solution:**
+
+* Child triggers `onSelect(src)`.
+* Parent updates `selectedImage` and sets `isOpen`.
+* Event propagation controlled by stopping events in modal content.
+
+**Reference:** [Issue #131](https://github.com/r9young/nexus-chat-application-clone/issues/131)
+
+### 4.5 ImageModal & onClick
+
+**What you learned:**
+Understanding data flow between components.
+
+**Issue:**
+Unsure about source of `src` prop for ImageModal.
+
+**Detailed Solution:**
+
+* `src` managed by parent component state and passed to ImageModal.
+
+**Reference:** [Issue #131](https://github.com/r9young/nexus-chat-application-clone/issues/131)
+
+### 4.6 Triggering ImageModal to Open
+
+**What you learned:**
+Modal visibility state lifecycle.
+
+**Issue:**
+Ensuring a single source of truth for modal state.
+
+**Detailed Solution:**
+
+* Maintain modal open state (`isOpen`) in the parent component.
+* Reset state on modal close.
+
+**Reference:** [Issue #131](https://github.com/r9young/nexus-chat-application-clone/issues/131)
 
 ---
 
-### Finally, How Does `pusherServer` Work?
+## 5. About useSession()
 
-* The backend saves `newMessage` using Prisma.
-* The backend uses `pusherServer.trigger(...)` to send data via WebSocket.
-* The frontend (UI) uses `pusherClient.subscribe(conversationId)` to listen to the channel.
-* The frontend is listening for the `'messages:new'` event.
-* When a message arrives, the UI updates live (e.g., by appending it to the chat view).
+**What you learned:**
+Session data management and null-safety.
 
----
+**Issue:**
+Safe access of session data.
 
-With this setup, we’ve connected the database, real-time messaging, and UI into a smooth, reactive conversation experience.
+**Detailed Solution:**
 
-Let me know if you'd like me to go deeper into any section or turn this into proper documentation.
+* Always handle loading/unauthenticated states explicitly.
 
----
-
-Would you like a diagram version or want to convert this into a Markdown file for your blog repo?
-
+**Reference:** [Issue #133](https://github.com/r9young/nexus-chat-application-clone/issues/133)
 
 ---
 
-7th July 2025
+## 6. Destructuring in MessageBox
 
-so last week, we have successfully tested the POST function. 
+**What you learned:**
+Benefits of destructuring in components.
 
+**Issue:**
+Confusion about curly braces syntax.
+
+**Detailed Solution:**
+
+* `{}` syntax destructures props for direct access, avoiding repetitive code.
+
+**Reference:** [Issue #132](https://github.com/r9young/nexus-chat-application-clone/issues/132)
+
+---
+
+## Consolidated Takeaways
+
+* Use prop drilling only for shallow trees; prefer Context or state management libraries for deeper structures.
+* Always forward `{children}` explicitly.
+* Guard session-dependent logic with checks.
+* Track UI events for clarity on state updates.
+* Embrace destructuring for cleaner and concise code.
