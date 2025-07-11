@@ -31,8 +31,23 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
   }, [conversationId]);
 
   useEffect(() => {
-      bottomRef?.current?.scrollIntoView();
-  })
+    pusherClient.subscribe(conversationId)
+
+    const messageHandler = (message: FullMessageType) => {}
+    const updateMessageHandler = (newMessage: FullMessageType) => {}
+
+    pusherClient.bind('messages:new', messageHandler)
+    pusherClient.bind('message: update', updateMessageHandler)
+
+
+    return () => {
+      pusherClient.unsubscribe(conversationId)
+      pusherClient.unbind('message:new', messageHandler)
+      pusherClient.bind('messages:update', updateMessageHandler)
+    }
+  }, [conversationId])
+
+
 
   return (
     <div ref={bottomRef} className='pt-24' />
