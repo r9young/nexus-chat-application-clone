@@ -31,29 +31,46 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
   }, [conversationId]);
 
   useEffect(() => {
-    pusherClient.subscribe(conversationId)
+      // Subscribe to PUSH channel
+      pusherClient.subscribe(conversationId);
 
-    const messageHandler = (message: FullMessageType) => {}
-    const updateMessageHandler = (newMessage: FullMessageType) => {}
+      // Event handler for new messages
+      const messageHandler = (message: FullMessageType) => {
+        // Mark message as seen
+        axios.post(`/api/conversations/${conversationId}/seen`);
 
-    pusherClient.bind('messages:new', messageHandler)
-    pusherClient.bind('message: update', updateMessageHandler)
+        // Add message to state if it's new
+        setMessages((prevMessages) => {
+          if (find(prevMessages, { id: message.id })) return prevMessages;
+          return [...prevMessages, message];
+        });
 
+        // Scroll to the latest message
+        bottomRef?.current?.scrollIntoView();
+      };
 
-    return () => {
-      pusherClient.unsubscribe(conversationId)
-      pusherClient.unbind('message:new', messageHandler)
-      pusherClient.bind('messages:update', updateMessageHandler)
-    }
-  }, [conversationId])
+      // Event handler for message updates
+      const updateMessageHandler = (newMessage) => {
+        setMessages((prevMessages) =>
+          prevMessages.map((msg) => (msg.id === newMessage.id ? newMessage : msg))
+        );
+      };
 
+      // Bind event handlers
+      pusherClient.bind('messages:new', messageHandler);
+      pusherClient.bind('message:update', updateMessageHandler);
 
+      // Scroll to bottom initially
+      bottomRef?.current?.scrollIntoView();
 
-  return (
-    <div ref={bottomRef} className='pt-24' />
-    // bottomRef.current
-  );
-}
+      // Cleanup on unmount
+      return () => {
+        pusherClient.unsubscribe(conversationId);
+        pusherClient.unbind('messages:new', messageHandler);
+        pusherClient.unbind('message:update', updateMessageHandler);
+      };
+    }, [conversationId]);
+  }
 
 
 export default Body;
