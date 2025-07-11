@@ -1,10 +1,4 @@
-### 10th July 2025
-
-## Detailed Learning & Issue‑Resolution Report
-
-**(10 July 2025 – all issues and sub‑issues, with expanded solutions and reference links)**
-
----
+# 10th July 2025
 
 ## 1. Prop Drilling vs. Forwarding Props
 
@@ -35,7 +29,7 @@ function App() {
 
 **Reference:** [Issue #136](https://github.com/r9young/nexus-chat-application-clone/issues/136)
 
----
+
 
 ## 2. Triggering ImageModal
 
@@ -54,7 +48,7 @@ Couldn't trace the state update from click to modal opening.
 
 **Reference:** [Issue #135](https://github.com/r9young/nexus-chat-application-clone/issues/135)
 
----
+
 
 ## 3. Code Review: ImageModal
 
@@ -121,7 +115,7 @@ Refer to detailed explanation provided under Issue #1; consider Context for comp
 
 **Reference:** [Issue #136](https://github.com/r9young/nexus-chat-application-clone/issues/136)
 
----
+
 
 ## 4. Conversation\_Page\_Rebuilt
 
@@ -222,7 +216,7 @@ Ensuring a single source of truth for modal state.
 
 **Reference:** [Issue #131](https://github.com/r9young/nexus-chat-application-clone/issues/131)
 
----
+
 
 ## 5. About useSession()
 
@@ -238,7 +232,7 @@ Safe access of session data.
 
 **Reference:** [Issue #133](https://github.com/r9young/nexus-chat-application-clone/issues/133)
 
----
+
 
 ## 6. Destructuring in MessageBox
 
@@ -254,7 +248,7 @@ Confusion about curly braces syntax.
 
 **Reference:** [Issue #132](https://github.com/r9young/nexus-chat-application-clone/issues/132)
 
----
+
 
 ## Consolidated Takeaways
 
@@ -263,3 +257,51 @@ Confusion about curly braces syntax.
 * Guard session-dependent logic with checks.
 * Track UI events for clarity on state updates.
 * Embrace destructuring for cleaner and concise code.
+
+
+---
+
+
+# 11th July 2025
+
+### Issue Summary for July 11, 2025
+
+1. **Question:** Code Review: Three Routes
+   **Answer:** No response yet (issue still open).
+   **Link:** [Issue #146](https://github.com/r9young/nexus-chat-application-clone/issues/146)
+
+2. **Question:** Review PUSH Code
+   **Answer:** No response yet (issue still open).
+   **Link:** [Issue #144](https://github.com/r9young/nexus-chat-application-clone/issues/144)
+
+3. **Question:** pusherClient methods
+   **Answer:** Comment by r9young: “Yes, we need to further review it.”
+   **Link:** [Issue #141](https://github.com/r9young/nexus-chat-application-clone/issues/141)
+
+4. **Question:** To Understand `pusherClient.subscribe(conversationId)`
+   **Answer:** Comment by r9young: “Yes, we need to further review it.”
+   **Link:** [Issue #140](https://github.com/r9young/nexus-chat-application-clone/issues/140)
+
+5. **Question:** Code Review: actionGetMessage
+   **Answer:** Provides a full walkthrough of each line in the Prisma query, including explanations for `where`, `include`, and `orderBy` clauses, along with suggestions to improve readability.
+   **Link:** [Issue #145](https://github.com/r9young/nexus-chat-application-clone/issues/145)
+
+6. **Question:** How the connection between the client and server happens through an API endpoint
+   **Answer:** Clarifies the client's PUSH handshake using the `/api/pusher/auth` endpoint; explains the authentication flow and how the server authorizes connections.
+   **Link:** [Issue #143](https://github.com/r9young/nexus-chat-application-clone/issues/143)
+
+7. **Question:** What is PUSH
+   **Answer:** Defines PUSH versus traditional polling, includes real-world examples (e.g., chat apps, live notifications, stock tickers), and provides a diagram illustrating the push communication flow.
+   **Link:** [Issue #142](https://github.com/r9young/nexus-chat-application-clone/issues/142)
+
+8. **Question:** What is the effect of `current`?
+   **Answer:** Explains effects of `myRef.current?.scrollIntoView()`, `.focus()`, and `.getBoundingClientRect()` with appropriate usage scenarios.
+   **Link:** [Issue #139](https://github.com/r9young/nexus-chat-application-clone/issues/139)
+
+9. **Question:** What is the effect of `useRef`?
+   **Answer:** Describes how `useRef` creates an object with a `.current` property, allowing direct DOM manipulation without modifying DOM element properties directly.
+   **Link:** [Issue #138](https://github.com/r9young/nexus-chat-application-clone/issues/138)
+
+### Summary
+
+On July 11, 2025, nine issues were created. Four issues remain open without substantive replies, while five closed issues have detailed self-answered explanations provided by the repository owner.
